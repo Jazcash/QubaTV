@@ -1,0 +1,75 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<dom-module id="page-twitter">
+	<template>
+		<link rel="stylesheet" href="../styles/reset.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+		<style>
+			.container{
+				display: flex;
+				width: 100%;
+				height: 100%;
+				background: #00aced;
+			}
+			.left-col{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 40%;
+				padding: 5%;
+			}
+			.icon{
+				width: 100%;
+			}
+			.right-col{
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 60%;
+				padding: 5% 15%;
+				background: red;
+			}
+			.tweet{
+				font-size: 2vw;
+				text-align: left;
+			}
+			.tweet .date{
+
+			}
+			.tweet .message{
+				font-family: 'Roboto', sans-serif;
+				font-weight: 300;
+				line-height: 1.3em;
+				color: #fff;
+			}
+			.tweet .image{
+				max-width: 75%;
+				margin-top: 10%;
+				box-shadow: 0 2px 3px rgba(0,0,0,.5);
+			}
+		</style>
+		<div class="container">
+			<div class="left-col">
+				<img class="icon" src="../images/twitter.svg"/>
+			</div>
+			<div class="right-col">
+				<div class="tweet">
+					<div class="date">
+					</div>
+					<div class="message">
+						A new day dawns over #ndclondon, one hightlight from yesterday @shanselman fascinating introduction to Azure
+					</div>
+					<img class="image" src="https://pbs.twimg.com/media/CYv639OWEAAKewO.jpg"/>
+				</div>
+			</div>
+		</div>
+	</template>
+	<script>
+		Polymer({
+			is: "page-twitter",
+			ready: function() {
+				// set this element's owner property
+				//this.owner = "Daniel";
+			}
+		});
+	</script>
+</dom-module>

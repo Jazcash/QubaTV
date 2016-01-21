@@ -14,6 +14,9 @@
 	<!-- endbower -->
 	<!-- endbuild -->
 
+	<!-- Polymer components -->
+	<link rel="import" href="pages/page-twitter.html">
+
 	<!-- build:css styles/main.css -->
 	<link rel="stylesheet" href="styles/main.css">
 	<!-- endbuild -->
@@ -27,19 +30,12 @@
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
 
-	<div class="container">
-		<div class="left-col">
-			<img class="icon" src="images/twitter.svg"/>
-		</div>
-		<div class="right-col">
-			Test 2
-		</div>
-	</div>
+	<page-twitter></page-twitter>
 
 	<!-- build:js scripts/vendor.js -->
 	<!-- bower:js -->
 	<script src="/bower_components/jquery/dist/jquery.js"></script>
-	<script src="/bower_components/polymer/polymer.html"></script>
+	<script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 	<!-- endbower -->
 	<!-- endbuild -->
 

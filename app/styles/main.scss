@@ -1,38 +1,14 @@
-@import url("reset.min.css");
 // bower:scss
 // endbower
 $icon-font-path: '../fonts/';
 
 html {
-  box-sizing: border-box;
+	box-sizing: border-box;
+	height: 100%;
 }
 *, *:before, *:after {
-  box-sizing: inherit;
+	box-sizing: inherit;
 }
-
-.container{
-	position: absolute;
-	display: flex;
-	width: 100%;
+body{
 	height: 100%;
-	background: #ccc;
-	.left-col{
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 30%;
-		padding: 2%;
-		background: red;
-		.icon{
-			width: 100%;
-		}
-	}
-	.right-col{
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 70%;
-		padding: 5% 15%;
-		background: green;
-	}
 }
