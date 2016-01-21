@@ -59,7 +59,7 @@
 					<div class="date">
 					</div>
 					<div class="message">
-						A new day dawns over #ndclondon, one hightlight from yesterday @shanselman fascinating introduction to Azure
+						{{message}}
 					</div>
 					<img class="image" src="https://pbs.twimg.com/media/CYv639OWEAAKewO.jpg"/>
 				</div>
@@ -69,9 +69,11 @@
 	<script>
 		Polymer({
 			is: "page-twitter",
-			ready: function() {
-				// set this element's owner property
-				//this.owner = "Daniel";
+			properties: {
+				message: {
+					type: String,
+					value: "test"
+				}
 			}
 		});
 	</script>
