@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
 	setTweet();
 	setDoneDone();
 	setQuba();
@@ -30,8 +29,8 @@ $(document).ready(function(){
 	// }, 3000);
 
 	function setTweet(){
-		$.get('/tweet', function(data) {
-			$("page-twitter").attr("message", data);
+		$.get('/tweet', function(tweet) {
+			$("page-twitter").attr("message", tweet);
 		});
 	}
 
@@ -40,6 +39,9 @@ $(document).ready(function(){
 	}
 
 	function setQuba(){
-
+		$.get('/blogpost', function(blogpost) {
+			$("page-quba").attr("title", blogpost.title);
+			$("page-quba").attr("summary", blogpost.summary);
+		});
 	}
 });

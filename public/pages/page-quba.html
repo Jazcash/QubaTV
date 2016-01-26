@@ -55,13 +55,24 @@
 				<img class="icon" src="/img/quba.svg"/>
 			</div>
 			<div class="right-col">
-				Hello world
+				<div>{{title}}</div>
+				<div>{{summary}}</div>
 			</div>
 		</div>
 	</template>
 	<script>
 		Polymer({
 			is: "page-quba",
+			properties: {
+				title: {
+					type: String,
+					value: "test"
+				},
+				summary: {
+					type: String,
+					value: "test2"
+				}
+			},
 			ready: function() {
 				// set this element's owner property
 				//this.owner = "Daniel";
