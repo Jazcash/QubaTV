@@ -23,12 +23,13 @@ router.get("/", function (req, res, next) {
 router.get("/tweet", function (req, res, next) {
 	client.get("statuses/user_timeline", {
 		"screen_name": "qubadigital",
-		"count": 2
+		"exclude_replies": true,
+		"count": 1
 	}, function(error, tweet, response){
 		if(error)
 			console.log(error);
 
-		res.send(tweet[1].text);
+		res.send(tweet[0].text);
 	});
 });
 
@@ -48,6 +49,3 @@ router.get("/blogpost", function (req, res, next) {
 		});
 	});
 });
-
-
-//document.querySelector(".blog-list > *:nth-child(1) .title a").innerText
