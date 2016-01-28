@@ -1,5 +1,5 @@
 <link rel="import" href="/components/polymer/polymer.html">
-<dom-module id="page-twitter">
+<dom-module id="page-quba">
 	<template>
 		<link rel="stylesheet" href="/css/reset.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -12,7 +12,7 @@
 				display: flex;
 				width: 100vw;
 				height: 100%;
-				background: #00aced;
+				background: #B6212C;
 			}
 			.left-col{
 				display: flex;
@@ -28,21 +28,22 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
+				flex-direction: column;
 				width: 70%;
 				padding: 5% 15% 5% 10%;
 			}
-			.tweet{
-				font-size: 2vw;
+			.blogpost{
+				font-family: 'Roboto', sans-serif;
+				font-weight: 500;
+				color: #3e0e1a;
 				text-align: center;
 			}
-			.date{
-
+			.title{
+				font-size: 3vw;
 			}
-			.message{
-				font-family: 'Roboto', sans-serif;
-				font-weight: 300;
-				line-height: 1.3em;
-				color: #fff;
+			.summary{
+				font-size: 1.5vw;
+				margin-top: 5vh;
 			}
 			.image{
 				max-width: 75%;
@@ -53,32 +54,22 @@
 		</style>
 		<div class="container">
 			<div class="left-col">
-				<img class="icon" src="/img/twitter.svg"/>
+				<img class="icon" src="/img/quba.svg"/>
 			</div>
-			<div class="right-col">
-				<div class="tweet">
-					<div class="date">
-					</div>
-					<div class="message">
-						{{message}}
-					</div>
-					<img class="image" src="{{image}}"/>
-				</div>
+			<div class="right-col blogpost">
+				<div class="title">{{title}}</div>
+				<div class="summary">{{summary}}</div>
+				<img class="image" src="{{image}}"/>
 			</div>
 		</div>
 	</template>
 	<script>
 		Polymer({
-			is: "page-twitter",
+			is: "page-quba",
 			properties: {
-				message: {
-					type: String,
-					value: "test"
-				},
-				image: {
-					type: String,
-					value: ""
-				}
+				title: String,
+				summary: String,
+				image: String
 			}
 		});
 	</script>

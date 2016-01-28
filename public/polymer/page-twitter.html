@@ -1,5 +1,5 @@
 <link rel="import" href="/components/polymer/polymer.html">
-<dom-module id="page-quba">
+<dom-module id="page-twitter">
 	<template>
 		<link rel="stylesheet" href="/css/reset.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -12,7 +12,7 @@
 				display: flex;
 				width: 100vw;
 				height: 100%;
-				background: #B6212C;
+				background: #00aced;
 			}
 			.left-col{
 				display: flex;
@@ -28,22 +28,21 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				flex-direction: column;
 				width: 70%;
 				padding: 5% 15% 5% 10%;
 			}
-			.blogpost{
-				font-family: 'Roboto', sans-serif;
-				font-weight: 500;
-				color: #3e0e1a;
+			.tweet{
+				font-size: 2vw;
 				text-align: center;
 			}
-			.title{
-				font-size: 3vw;
+			.date{
+
 			}
-			.summary{
-				font-size: 1.5vw;
-				margin-top: 5vh;
+			.message{
+				font-family: 'Roboto', sans-serif;
+				font-weight: 300;
+				line-height: 1.3em;
+				color: #fff;
 			}
 			.image{
 				max-width: 75%;
@@ -54,35 +53,26 @@
 		</style>
 		<div class="container">
 			<div class="left-col">
-				<img class="icon" src="/img/quba.svg"/>
+				<img class="icon" src="/img/twitter.svg"/>
 			</div>
-			<div class="right-col blogpost">
-				<div class="title">{{title}}</div>
-				<div class="summary">{{summary}}</div>
-				<img class="image" src="{{image}}"/>
+			<div class="right-col">
+				<div class="tweet">
+					<div class="date">
+					</div>
+					<div class="message">
+						{{message}}
+					</div>
+					<img class="image" src="{{image}}"/>
+				</div>
 			</div>
 		</div>
 	</template>
 	<script>
 		Polymer({
-			is: "page-quba",
+			is: "page-twitter",
 			properties: {
-				title: {
-					type: String,
-					value: "test"
-				},
-				summary: {
-					type: String,
-					value: "test2"
-				},
-				image: {
-					type: String,
-					value: ""
-				}
-			},
-			ready: function() {
-				// set this element's owner property
-				//this.owner = "Daniel";
+				message: String,
+				image: String
 			}
 		});
 	</script>
