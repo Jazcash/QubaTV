@@ -18,7 +18,7 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				width: 40%;
+				width: 30%;
 				padding: 5%;
 			}
 			.icon{
@@ -28,25 +28,27 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				width: 60%;
-				padding: 5% 15%;
+				flex-direction: column;
+				width: 70%;
+				padding: 5% 15% 5% 10%;
 			}
-			.tweet{
-				font-size: 2vw;
-				text-align: left;
-			}
-			.tweet .date{
-
-			}
-			.tweet .message{
+			.blogpost{
 				font-family: 'Roboto', sans-serif;
-				font-weight: 300;
-				line-height: 1.3em;
-				color: #fff;
+				font-weight: 500;
+				color: #3e0e1a;
+				text-align: center;
 			}
-			.tweet .image{
+			.title{
+				font-size: 3vw;
+			}
+			.summary{
+				font-size: 1.5vw;
+				margin-top: 5vh;
+			}
+			.image{
 				max-width: 75%;
-				margin-top: 10%;
+				max-height: 60vh;
+				margin-top: 5vh;
 				box-shadow: 0 2px 3px rgba(0,0,0,.5);
 			}
 		</style>
@@ -54,9 +56,10 @@
 			<div class="left-col">
 				<img class="icon" src="/img/quba.svg"/>
 			</div>
-			<div class="right-col">
-				<div>{{title}}</div>
-				<div>{{summary}}</div>
+			<div class="right-col blogpost">
+				<div class="title">{{title}}</div>
+				<div class="summary">{{summary}}</div>
+				<img class="image" src="{{image}}"/>
 			</div>
 		</div>
 	</template>
@@ -71,6 +74,10 @@
 				summary: {
 					type: String,
 					value: "test2"
+				},
+				image: {
+					type: String,
+					value: ""
 				}
 			},
 			ready: function() {

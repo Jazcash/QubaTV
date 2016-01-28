@@ -18,7 +18,7 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				width: 40%;
+				width: 30%;
 				padding: 5%;
 			}
 			.icon{
@@ -28,26 +28,28 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				width: 60%;
-				padding: 5% 15%;
+				flex-direction: column;
+				width: 70%;
+				padding: 5% 15% 5% 10%;
 			}
-			.tweet{
-				font-size: 2vw;
-				text-align: left;
-			}
-			.tweet .date{
-
-			}
-			.tweet .message{
+			.text{
 				font-family: 'Roboto', sans-serif;
 				font-weight: 300;
 				line-height: 1.3em;
 				color: #fff;
+				font-size: 5vh;
 			}
-			.tweet .image{
-				max-width: 75%;
-				margin-top: 10%;
-				box-shadow: 0 2px 3px rgba(0,0,0,.5);
+			.label{
+				font-size: 3vh;
+				color: rgba(255,255,255,.6);
+				margin-bottom: 2vh;
+			}
+			.title{
+				font-size: 6vh;
+			}
+			.project{
+				font-size: 4vh;
+				color: #ddd;
 			}
 		</style>
 		<div class="container">
@@ -55,13 +57,27 @@
 				<img class="icon" src="/img/donedone.svg"/>
 			</div>
 			<div class="right-col">
-				Hello world
+				<div class="text">
+					<div class="label">Latest issue fixed</div>
+					<div class="title">{{title}}</div>
+					<div class="project">{{project}}</div>
+				</div>
 			</div>
 		</div>
 	</template>
 	<script>
 		Polymer({
 			is: "page-donedone",
+			properties: {
+				title: {
+					type: String,
+					value: "test"
+				},
+				project: {
+					type: String,
+					value: ""
+				}
+			},
 			ready: function() {
 				// set this element's owner property
 				//this.owner = "Daniel";

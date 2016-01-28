@@ -33,20 +33,21 @@
 			}
 			.tweet{
 				font-size: 2vw;
-				text-align: left;
+				text-align: center;
 			}
-			.tweet .date{
+			.date{
 
 			}
-			.tweet .message{
+			.message{
 				font-family: 'Roboto', sans-serif;
 				font-weight: 300;
 				line-height: 1.3em;
 				color: #fff;
 			}
-			.tweet .image{
+			.image{
 				max-width: 75%;
-				margin-top: 10%;
+				max-height: 60vh;
+				margin-top: 5vh;
 				box-shadow: 0 2px 3px rgba(0,0,0,.5);
 			}
 		</style>
@@ -61,7 +62,7 @@
 					<div class="message">
 						{{message}}
 					</div>
-					<img class="image" src="https://pbs.twimg.com/media/CYv639OWEAAKewO.jpg"/>
+					<img class="image" src="{{image}}"/>
 				</div>
 			</div>
 		</div>
@@ -73,6 +74,10 @@
 				message: {
 					type: String,
 					value: "test"
+				},
+				image: {
+					type: String,
+					value: ""
 				}
 			}
 		});

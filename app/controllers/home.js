@@ -24,12 +24,18 @@ router.get("/tweet", function (req, res, next) {
 	client.get("statuses/user_timeline", {
 		"screen_name": "qubadigital",
 		"exclude_replies": true,
-		"count": 1
-	}, function(error, tweet, response){
+		"count": 5
+	}, function(error, _tweet, response){
 		if(error)
 			console.log(error);
-
-		res.send(tweet[0].text);
+		_tweet = _tweet[0];
+		var text = _tweet.text;
+		var mediaUrl = ("media" in _tweet.entities) ? _tweet.entities.media[0]["media_url"] : "";
+		var tweet = {
+			text: text,
+			mediaUrl: mediaUrl
+		}
+		res.send(tweet);
 	});
 });
 
@@ -38,14 +44,27 @@ router.get("/blogpost", function (req, res, next) {
 	request(url, function(error, response, html){
 		if(error) return;
 		var $ = cheerio.load(html);
+		var image = "http://www.quba.co.uk" + $(".blog-list > *:nth-child(1) img").attr("src");
 		url = "http://www.quba.co.uk" + $(".blog-list > *:nth-child(1) .title a").attr("href");
 		request(url, function(error, response, html){
 			if(error) return;
 			$ = cheerio.load(html);
 			res.send({
 				title: $(".blog-post-detail h1").text().trim(),
-				summary: $(".blog-post-detail .summary").text().trim()
+				summary: $(".blog-post-detail .summary").text().trim(),
+				image: image
 			});
 		});
+	});
+});
+
+router.get("/donedone", function (req, res, next) {
+	var username = process.env.DONEDONE_USERNAME,
+		apikey = process.env.DONEDONE_APIKEY;
+	var url = "https://"+username+":"+apikey+"@quba.mydonedone.com/issuetracker/api/v2/activity/all_closed_and_fixed_issues.json?take=1";
+	request(url, function(error, response, html){
+		if(error) return;
+		var results = JSON.parse(response.body);
+		res.send(results[0]);
 	});
 });
