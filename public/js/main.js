@@ -26,7 +26,7 @@ $(document).ready(function(){
 			}
 			currentPage = nextPage;
 		});
-	}, 15000);
+	}, 7500);
 
 	function setTweet(){
 		$.get('/tweet', function(tweet) {
@@ -37,8 +37,10 @@ $(document).ready(function(){
 
 	function setDoneDone(){
 		$.get('/donedone', function(issue) {
+			console.log(issue);
 			$("page-donedone").attr("title", issue.title);
 			$("page-donedone").attr("project", issue.project.name);
+			$("page-donedone").attr("fixer", issue.fixer.name);
 		});
 	}
 

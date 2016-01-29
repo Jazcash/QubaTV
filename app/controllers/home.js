@@ -61,10 +61,11 @@ router.get("/blogpost", function (req, res, next) {
 router.get("/donedone", function (req, res, next) {
 	var username = process.env.DONEDONE_USERNAME,
 		apikey = process.env.DONEDONE_APIKEY;
-	var url = "https://"+username+":"+apikey+"@quba.mydonedone.com/issuetracker/api/v2/activity/all_closed_and_fixed_issues.json?take=1";
+	var url = "https://"+username+":"+apikey+"@quba.mydonedone.com/issuetracker/api/v2/issues/all_closed_and_fixed.json?take=1";
+	console.log(url);
 	request(url, function(error, response, html){
-		if(error) return;
+		if(error) return
 		var results = JSON.parse(response.body);
-		res.send(results[0]);
+		res.send(results.issues[0]);
 	});
 });
