@@ -3,11 +3,24 @@ router = express.Router(),
 Twitter = require("twitter"),
 cheerio = require("cheerio"),
 request = require("request"),
-client = new Twitter({
-	consumer_key: process.env.TWITTER_CONSUMER_KEY,
-	consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-	access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-	access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+fs = require("fs"),
+config = {};
+
+try {
+    stats = fs.lstatSync("config.json");
+    if (stats.isFile()) {
+        config = JSON.parse(fs.readFileSync("config.json"));
+    }
+} catch(e){
+    console.log("No config.json file found - exiting".error);
+    process.exit(1);
+}
+
+var client = new Twitter({
+	consumer_key: config.twitter_consumer_key,
+	consumer_secret: config.twitter_secret_key,
+	access_token_key: config.twitter_access_token,
+	access_token_secret: config.twitter_access_token_secret,
 });
 
 module.exports = function (app) {
@@ -59,10 +72,7 @@ router.get("/blogpost", function (req, res, next) {
 });
 
 router.get("/donedone", function (req, res, next) {
-	var username = process.env.DONEDONE_USERNAME,
-		apikey = process.env.DONEDONE_APIKEY;
-	var url = "https://"+username+":"+apikey+"@quba.mydonedone.com/issuetracker/api/v2/issues/all_closed_and_fixed.json?take=1";
-	console.log(url);
+	var url = "https://"+config.donedone_username+":"+config.donedone_apikey+"@quba.mydonedone.com/issuetracker/api/v2/issues/all_closed_and_fixed.json?take=1";
 	request(url, function(error, response, html){
 		if(error) return
 		var results = JSON.parse(response.body);
