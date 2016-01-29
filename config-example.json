@@ -4,5 +4,7 @@
 	"twitter_consumer_key": "",
 	"twitter_secret_key": "",
 	"twitter_access_token": "",
-	"twitter_access_token_secret": ""
+	"twitter_access_token_secret": "",
+	"beanstalk_username": "",
+	"beanstalk_apikey": ""
 }
