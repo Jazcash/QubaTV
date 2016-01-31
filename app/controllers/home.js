@@ -3,6 +3,7 @@ router = express.Router(),
 Twitter = require("twitter"),
 cheerio = require("cheerio"),
 request = require("request"),
+moment = require("moment"),
 fs = require("fs"),
 config = {};
 
@@ -74,10 +75,29 @@ router.get("/blogpost", function (req, res, next) {
 });
 
 router.get("/donedone", function (req, res, next) {
-	var url = "https://"+config.donedone_username+":"+config.donedone_apikey+"@quba.mydonedone.com/issuetracker/api/v2/issues/all_closed_and_fixed.json?take=1";
+	var url = "https://"+config.donedone_username+":"+config.donedone_apikey+"@quba.mydonedone.com/issuetracker/api/v2/global_custom_filters.json";
+
 	request(url, function(error, response, html){
-		if(error) return
-		var results = JSON.parse(response.body);
-		res.send(results.issues[0]);
+	    if (error){
+	        console.log(error);
+	        return;
+	    }
+
+	    var filterId = JSON.parse(response.body)[0].id;
+	    var today = moment();
+	    var tomorrow = moment(today).add(1, 'day');
+	    url = "https://"+config.donedone_username+":"+config.donedone_apikey+"@quba.mydonedone.com/issuetracker/api/v2/activity/issues_by_global_custom_filter/"+filterId+".json?from_date="+today.format("Y-M-D")+"&until_date="+tomorrow.format("Y-M-D")+"&take=500";
+
+	    request(url, function(error, response, html){
+	        if (error){
+	            console.log(error);
+	            return;
+	        }
+	        var fixedIssues = JSON.parse(response.body);
+	        res.send({
+	        	totalIssues: fixedIssues.length,
+	        	latestIssue: fixedIssues[0]
+	        });
+	    });
 	});
 });

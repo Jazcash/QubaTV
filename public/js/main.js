@@ -42,11 +42,11 @@ $(document).ready(function(){
 	}
 
 	function setDoneDone(){
-		$.get('/donedone', function(issue) {
+		$.get('/donedone', function(data) {
 			$("page-donedone").attr({
-				"title": issue.title,
-				"project": issue.project.name,
-				"fixer": issue.fixer.name
+				"title": data.latestIssue.title,
+				"project": data.latestIssue.project.name,
+				"numberofissues": data.totalIssues
 			});
 		});
 	}

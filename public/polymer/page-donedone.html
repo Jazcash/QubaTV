@@ -32,40 +32,56 @@
 				width: 70%;
 				padding: 5% 15% 5% 10%;
 			}
-			.text{
+			.donedone{
+				display: flex;
+				flex-direction: column;
 				font-family: 'Roboto', sans-serif;
 				font-weight: 300;
-				line-height: 1.3em;
 				color: #fff;
-				font-size: 5vh;
 			}
-			.label{
-				font-size: 3vh;
-				color: rgba(255,255,255,.6);
-				margin-bottom: 2vh;
-			}
-			.title{
-				font-size: 6vh;
-			}
-			.project{
-				font-size: 4vh;
-				color: #ddd;
-			}
-			.fixer{
-				color: #fff;
-				font-weight: 400;
-			}
+				.totalrow{
+					display: flex;
+					flex-direction: row;
+					margin-bottom: 5vh;
+				}
+					.totaltext{
+						font-size: 3vw;
+						color: rgba(255,255,255,.6);
+					}
+					.totalissues{
+						font-size: 6.5vw;
+						font-weight: 500;
+						margin-left: 2vw;
+					}
+				.label{
+					font-size: 3vh;
+					color: rgba(255,255,255,.6);
+					margin-bottom: 2vh;
+				}
+				.title{
+					font-size: 5vh;
+					line-height: 110%;
+				}
+				.project{
+					font-size: 3vh;
+					margin-top: 1vh;
+					color: #ddd;
+					line-height: 110%;
+				}
 		</style>
 		<div class="container">
 			<div class="left-col">
 				<img class="icon" src="/img/donedone.svg"/>
 			</div>
 			<div class="right-col">
-				<div class="text">
-					<div class="label">Latest issue fixed</div>
+				<div class="donedone">
+					<div class="totalrow">
+						<div class="totaltext">Total Issues</br>Fixed Today</div>
+						<div class="totalissues">{{numberofissues}}</div>
+					</div>
+					<div class="label">Latest Issue Fixed:</div>
 					<div class="title">{{title}}</div>
 					<div class="project">{{project}}</div>
-					<!-- <div class="project">Fixed by: <span class="fixer">{{fixer}}</span></div> -->
 				</div>
 			</div>
 		</div>
@@ -74,6 +90,7 @@
 		Polymer({
 			is: "page-donedone",
 			properties: {
+				numberofissues: Number,
 				title: String,
 				project: String
 			}
