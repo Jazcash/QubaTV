@@ -42,12 +42,14 @@ router.get("/tweet", function (req, res, next) {
 		if(error)
 			console.log(error);
 		_tweet = _tweet[0];
-		var text = _tweet.text;
-		var mediaUrl = ("media" in _tweet.entities) ? _tweet.entities.media[0]["media_url"] : "";
 		var tweet = {
-			text: text,
-			mediaUrl: mediaUrl
-		}
+			date: _tweet["created_at"],
+			username: _tweet.user.name,
+			handle: _tweet.user["screen_name"],
+			profilepic: _tweet.user["profile_image_url"].replace("_normal", ""),
+			text: _tweet.text,
+			mediaUrl: ("media" in _tweet.entities) ? _tweet.entities.media[0]["media_url"] : "",
+		};
 		res.send(tweet);
 	});
 });
