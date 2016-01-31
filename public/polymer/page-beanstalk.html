@@ -31,16 +31,66 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			flex-direction: column;
 			width: 70%;
-			padding: 5% 15% 5% 10%;
+			padding: 5%;
 		}
+			.beanstalk{
+				font-size: 3vh;
+			}
+				.revision{
+
+				}
+				.message{
+					word-break: break-word;
+				}
+				.time{
+
+				}
+				.project{
+
+				}
+				.name{
+
+				}
+				td:first-child{
+					text-align: right;
+					color: rgba(255,255,255,.6);
+					padding-right: 2vw;
+				}
+				td{
+					padding-bottom: 1.5vh;
+				}
 	</style>
 	<div class="container">
 		<div class="left-col">
 			<img class="icon" src="/img/beanstalk.svg"/>
 		</div>
 		<div class="right-col">
-			Hello world
+			<div class="beanstalk">
+				<table>
+					<tr>
+						<td>Revision</td>
+						<td>#{{revision}}</td>
+					</tr>
+					<tr>
+						<td>Project</td>
+						<td>{{project}}</td>
+					</tr>
+					<tr>
+						<td>Message</td>
+						<td class="message" id="message">{{message}}</td>
+					</tr>
+					<tr>
+						<td>Time</td>
+						<td>{{time}}</td>
+					</tr>
+					<tr>
+						<td>Author</td>
+						<td>{{name}}</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 </template>
@@ -48,7 +98,20 @@
 	Polymer({
 		is: "page-beanstalk",
 		properties: {
-			title: String
+			revision: Number,
+			message: {
+				type: String,
+				observer: "breakLines"
+			},
+			time: String,
+			project: String,
+			name: String
+		},
+		breakLines: function(){
+			var message = this.message.replace(/\r\n/g, function(match){
+			    return "</br>";
+			});
+			this.$.message.innerHTML = message;
 		}
 	});
 </script>

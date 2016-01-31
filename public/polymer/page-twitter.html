@@ -127,10 +127,10 @@
 			image: String,
 			message: {
 				type: String,
-				observer: "wow"
+				observer: "highlight"
 			}
 		},
-		wow: function(){
+		highlight: function(){
 			var message = this.message.replace(/(\#\w*)|(\w*\:\/\/t\.co\/\w*)|(\@\w*)/g, function(match){
 			    return "<span style='color: #C1202B'>"+match+"</span>";
 			});

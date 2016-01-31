@@ -40,8 +40,10 @@ router.get("/tweet", function (req, res, next) {
 		"exclude_replies": true,
 		"count": 5
 	}, function(error, _tweet, response){
-		if(error)
+		if(error){
 			console.log(error);
+			return;
+		}
 		_tweet = _tweet[0];
 		var tweet = {
 			date: _tweet["created_at"],
@@ -58,7 +60,10 @@ router.get("/tweet", function (req, res, next) {
 router.get("/blogpost", function (req, res, next) {
 	var url = "http://www.quba.co.uk/blog";
 	request(url, function(error, response, html){
-		if(error) return;
+		if(error){
+			console.log(error);
+			return;
+		}
 		var $ = cheerio.load(html);
 		var image = "http://www.quba.co.uk" + $(".blog-list > *:nth-child(1) img").attr("src");
 		url = "http://www.quba.co.uk" + $(".blog-list > *:nth-child(1) .title a").attr("href");
@@ -97,6 +102,36 @@ router.get("/donedone", function (req, res, next) {
 	        res.send({
 	        	totalIssues: fixedIssues.length,
 	        	latestIssue: fixedIssues[0]
+	        });
+	    });
+	});
+});
+
+router.get("/beanstalk", function(req, res, next){
+	var url = "https://"+config.beanstalk_username+":"+config.beanstalk_apikey+"@apitesting.beanstalkapp.com/api";
+	request(url + "/changesets.json?per_page=1", function(error, response, html){
+	    if (error){
+	        console.log(error);
+	        return;
+	    }
+	    changeset = JSON.parse(response.body)[0]["revision_cache"];
+	    request(url + "/repositories/"+changeset["repository_id"]+".json", function(error, response, html){
+	        if (error){
+	            console.log(error);
+	            return;
+	        }
+	        repository = JSON.parse(response.body).repository;
+	        request(url + "/users/"+changeset["user_id"]+".json", function(error, response, html){
+	            if (error){
+	                console.log(error);
+	                return;
+	            }
+	            user = JSON.parse(response.body).user;
+	            res.send({
+	                changeset: changeset,
+	                repository: repository,
+	                user: user
+	            });
 	        });
 	    });
 	});
