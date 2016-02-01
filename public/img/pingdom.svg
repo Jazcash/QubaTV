@@ -1,22 +1,11 @@
 <?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="300.000000pt" height="396.000000pt" viewBox="0 0 300.000000 396.000000"
- preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.10, written by Peter Selinger 2001-2011
-</metadata>
-<g transform="translate(0.000000,396.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
-<path d="M1307 3945 c-447 -73 -828 -308 -1061 -655 -108 -160 -188 -358 -226
--557 -20 -106 -20 -133 -18 -1308 l3 -1200 25 -49 c51 -101 171 -165 326 -173
-163 -10 247 25 314 128 86 133 84 121 90 594 4 307 8 426 17 442 l13 21 101
--44 c55 -24 144 -58 197 -75 87 -29 113 -32 262 -38 312 -12 501 12 705 89
-198 74 352 170 502 313 271 260 423 598 440 983 15 339 -80 664 -275 944 -66
-94 -254 276 -352 341 -173 114 -377 197 -575 234 -125 23 -376 28 -488 10z
-m408 -725 c305 -97 511 -354 532 -662 24 -355 -211 -681 -553 -768 -94 -24
--260 -27 -352 -5 -218 51 -424 218 -507 411 -62 143 -82 325 -51 470 60 277
-287 504 570 569 90 21 271 13 361 -15z"/>
-</g>
+<!-- Generator: Adobe Fireworks 10, Export SVG Extension by Aaron Beall (http://fireworks.abeall.com) . Version: 0.6.1  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg id="Untitled-Page%201" viewBox="0 0 379 508" style="background-color:#ffffff00" version="1.1"
+	xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+	x="0px" y="0px" width="379px" height="508px"
+>
+	<g id="Layer%201">
+		<path d="M 189.5 0 C 84.8407 0 0 84.8407 0 189.5 C 0 193.8015 0.1429 198.0699 0.425 202.3 C 0.1443 204.1523 0 206.0548 0 208 L 0 470 C 0 491.6146 17.875 508 41.4546 508 L 54.5454 508 C 78.125 508 96 491.6146 96 470 L 96 354.365 C 123.5885 370.0447 155.4984 379 189.5 379 C 294.1593 379 379 294.1593 379 189.5 C 379 84.8407 294.1593 0 189.5 0 ZM 189.5 95.7 C 241.305 95.7 283.3 137.695 283.3 189.5 C 283.3 241.305 241.305 283.3 189.5 283.3 C 137.695 283.3 95.7 241.305 95.7 189.5 C 95.7 137.695 137.695 95.7 189.5 95.7 Z" fill="#fff000"/>
+	</g>
 </svg>

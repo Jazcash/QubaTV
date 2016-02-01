@@ -2,7 +2,7 @@
 <dom-module id="page-pingdom">
 <template>
 	<link rel="stylesheet" href="/css/reset.min.css">
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:500,400,300,200,100' rel='stylesheet' type='text/css'>
 	<style>
 		:host {
 			display: block;
@@ -12,7 +12,7 @@
 			display: flex;
 			width: 100vw;
 			height: 100%;
-			background: #FFF000;
+			background: #202020;
 			font-family: 'Roboto', sans-serif;
 		}
 		.left-col{
@@ -30,7 +30,7 @@
 			align-items: center;
 			justify-content: center;
 			width: 70%;
-			padding: 5% 5% 5% 5%;
+			padding: 5%;
 		}
 		.pingdom{
 			width: 100%;
@@ -38,25 +38,26 @@
 			flex-flow: row wrap;
 		}
 			.card{
-				width: calc(33.33% - 2vh);
-				font-size: 2.5vh;
+				font-size: 2vh;
+				font-weight: 300;
 				color: #333;
-				background: #fff;
+				background: #eee;
 				margin: 1vh;
-				padding: 1vh;
+				padding: 1.25vh;
 				display: flex;
 				flex-direction: row;
+				align-items: center;
 				border-radius: 0.5vh;
 				box-shadow: 0 .1vh .3vh rgba(0,0,0,0.12), 0 .1vh .2vh rgba(0,0,0,0.24);
+				overflow: hidden;
+				position: relative;
+				border-top: 1px #fff solid;
 			}
-				.status{
-					color: green;
-					display: flex;
-					align-items: center;
-					margin-top: -1px;
+				.up{
+					border-bottom: 0.75vh solid #59B200;
 				}
-				.client{
-					margin-left: 0.5vw;
+				.down{
+					border-bottom: 0.75vh solid #B21C00;
 				}
 	</style>
 	<div class="container">
@@ -65,14 +66,18 @@
 		</div>
 		<div class="right-col">
 			<div class="pingdom">
-				<div class="card">
-					<div class="status">
-						●
-					</div>
-					<div class="client">
-						The Priory Group ssdf
-					</div>
-				</div>
+				<template is="dom-repeat" items="{{clients}}">
+			        <template is="dom-if" if="{{item.isUp}}">
+			        	<div class="card up">
+				        	{{item.client}}
+			        	</div>
+			        </template>
+			        <template is="dom-if" if="{{!item.isUp}}">
+			        	<div class="card down">
+				        	{{item.client}}
+			        	</div>
+			        </template>
+			    </template>
 			</div>
 		</div>
 	</div>
@@ -81,7 +86,7 @@
 	Polymer({
 		is: "page-pingdom",
 		properties: {
-			title: String
+			clients: Array
 		}
 	});
 </script>

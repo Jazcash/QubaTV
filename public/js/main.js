@@ -3,33 +3,34 @@ $(document).ready(function(){
 	setDoneDone();
 	setQuba();
 	setBeanstalk();
+	setPingdom();
 
-	// $("body").animate({scrollLeft: $(".pages").children().eq(0).position().left}, 800);
-	// var currentPage = 0;
-	// var pageLoopId = setInterval(function(){
-	// 	var nextPage = (currentPage + 1 < $(".pages > *").length) ? currentPage + 1 : 0;
-	// 	$("body").animate({
-	// 		scrollLeft: $(".pages > *").eq(nextPage).position().left
-	// 	}, 1100, function(){
-	// 		var previousPage = $(".pages > *").eq(currentPage)[0].localName.split("-")[1];
-	// 		switch(previousPage){
-	// 			case "twitter":
-	// 				setTweet();
-	// 				break;
-	// 			case "donedone":
-	// 				setDoneDone();
-	// 				break;
-	// 			case "quba":
-	// 				setQuba();
-	// 				break;
-	// 			case "beanstalk":
-	// 				setBeanstalk();
-	// 			default:
-	// 				break;
-	// 		}
-	// 		currentPage = nextPage;
-	// 	});
-	// }, 15000);
+	$("body").animate({scrollLeft: $(".pages").children().eq(0).position().left}, 800);
+	var currentPage = 0;
+	var pageLoopId = setInterval(function(){
+		var nextPage = (currentPage + 1 < $(".pages > *").length) ? currentPage + 1 : 0;
+		$("body").animate({
+			scrollLeft: $(".pages > *").eq(nextPage).position().left
+		}, 1100, function(){
+			var previousPage = $(".pages > *").eq(currentPage)[0].localName.split("-")[1];
+			switch(previousPage){
+				case "twitter":
+					setTweet();
+					break;
+				case "donedone":
+					setDoneDone();
+					break;
+				case "quba":
+					setQuba();
+					break;
+				case "beanstalk":
+					setBeanstalk();
+				default:
+					break;
+			}
+			currentPage = nextPage;
+		});
+	}, 15000);
 
 	function setTweet(){
 		$.get('/tweet', function(tweet) {
@@ -37,7 +38,7 @@ $(document).ready(function(){
 				"profilepic": tweet.profilepic,
 				"username": tweet.username,
 				"handle": tweet.handle,
-				"date": moment(new Date(tweet.date)).format("dddd, hA"),
+				"date": moment(new Date(tweet.date)).format("dddd, h:mmA"),
 				"message": htmlDecode(tweet.text),
 				"image": tweet.mediaUrl
 			});
@@ -77,9 +78,40 @@ $(document).ready(function(){
 	}
 
 	function setPingdom(){
-		$.get('/beanstalk', function(data) {
-			console.log(data);
-		});
+		//$.get('/pingdom', function(data) {
+			$("page-pingdom").attr({
+				"clients": JSON.stringify([
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": false},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+					{"client": "The Priory Group", "isUp": true},
+				])
+			});
+		//});
 	}
 
 	function htmlDecode(input){
