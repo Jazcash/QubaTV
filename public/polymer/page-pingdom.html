@@ -1,0 +1,88 @@
+<link rel="import" href="/components/polymer/polymer.html">
+<dom-module id="page-pingdom">
+<template>
+	<link rel="stylesheet" href="/css/reset.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+	<style>
+		:host {
+			display: block;
+			height: 100%;
+		}
+		.container{
+			display: flex;
+			width: 100vw;
+			height: 100%;
+			background: #FFF000;
+			font-family: 'Roboto', sans-serif;
+		}
+		.left-col{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 30%;
+			padding: 5%;
+		}
+		.icon{
+			width: 100%;
+		}
+		.right-col{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 70%;
+			padding: 5% 5% 5% 5%;
+		}
+		.pingdom{
+			width: 100%;
+			display: flex;
+			flex-flow: row wrap;
+		}
+			.card{
+				width: calc(33.33% - 2vh);
+				font-size: 2.5vh;
+				color: #333;
+				background: #fff;
+				margin: 1vh;
+				padding: 1vh;
+				display: flex;
+				flex-direction: row;
+				border-radius: 0.5vh;
+				box-shadow: 0 .1vh .3vh rgba(0,0,0,0.12), 0 .1vh .2vh rgba(0,0,0,0.24);
+			}
+				.status{
+					color: green;
+					display: flex;
+					align-items: center;
+					margin-top: -1px;
+				}
+				.client{
+					margin-left: 0.5vw;
+				}
+	</style>
+	<div class="container">
+		<div class="left-col">
+			<img class="icon" src="/img/pingdom.svg"/>
+		</div>
+		<div class="right-col">
+			<div class="pingdom">
+				<div class="card">
+					<div class="status">
+						●
+					</div>
+					<div class="client">
+						The Priory Group ssdf
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+<script>
+	Polymer({
+		is: "page-pingdom",
+		properties: {
+			title: String
+		}
+	});
+</script>
+</dom-module>

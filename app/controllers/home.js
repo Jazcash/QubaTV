@@ -125,18 +125,6 @@ router.get("/beanstalk", function(req, res, next){
                 changeset: changeset,
                 repository: repository,
             });
-	        // request(url + "/users/"+changeset["user_id"]+".json", function(error, response, html){
-	        //     if (error){
-	        //         console.log(error);
-	        //         return;
-	        //     }
-	        //     user = JSON.parse(response.body).user;
-	        //     res.send({
-	        //         changeset: changeset,
-	        //         repository: repository,
-	        //         //user: user
-	        //     });
-	        // });
 	    });
 	});
 });

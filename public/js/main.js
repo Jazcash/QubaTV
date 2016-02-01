@@ -4,30 +4,32 @@ $(document).ready(function(){
 	setQuba();
 	setBeanstalk();
 
-	$("body").animate({scrollLeft: $(".pages").children().eq(0).position().left}, 800);
-	var currentPage = 0;
-	var pageLoopId = setInterval(function(){
-		var nextPage = (currentPage + 1 < $(".pages > *").length) ? currentPage + 1 : 0;
-		$("body").animate({
-			scrollLeft: $(".pages > *").eq(nextPage).position().left
-		}, 1100, function(){
-			var previousPage = $(".pages > *").eq(currentPage)[0].localName.split("-")[1];
-			switch(previousPage){
-				case "twitter":
-					setTweet();
-					break;
-				case "donedone":
-					setDoneDone();
-					break;
-				case "quba":
-					setQuba();
-					break;
-				default:
-					break;
-			}
-			currentPage = nextPage;
-		});
-	}, 15000);
+	// $("body").animate({scrollLeft: $(".pages").children().eq(0).position().left}, 800);
+	// var currentPage = 0;
+	// var pageLoopId = setInterval(function(){
+	// 	var nextPage = (currentPage + 1 < $(".pages > *").length) ? currentPage + 1 : 0;
+	// 	$("body").animate({
+	// 		scrollLeft: $(".pages > *").eq(nextPage).position().left
+	// 	}, 1100, function(){
+	// 		var previousPage = $(".pages > *").eq(currentPage)[0].localName.split("-")[1];
+	// 		switch(previousPage){
+	// 			case "twitter":
+	// 				setTweet();
+	// 				break;
+	// 			case "donedone":
+	// 				setDoneDone();
+	// 				break;
+	// 			case "quba":
+	// 				setQuba();
+	// 				break;
+	// 			case "beanstalk":
+	// 				setBeanstalk();
+	// 			default:
+	// 				break;
+	// 		}
+	// 		currentPage = nextPage;
+	// 	});
+	// }, 15000);
 
 	function setTweet(){
 		$.get('/tweet', function(tweet) {
@@ -66,11 +68,17 @@ $(document).ready(function(){
 		$.get('/beanstalk', function(data) {
 			$("page-beanstalk").attr({
 				"revision": data.changeset.revision,
-				"message": data.changeset.message,
+				"message": (data.changeset.message.length > 300) ? data.changeset.message.substr(0, 300) + " ..." : data.changeset.message,
 				"time": moment(new Date(data.changeset.time)).format("dddd, MMMM Do, h:mm a"),
 				"project": data.repository.title,
 				"name": data.changeset.author
 			});
+		});
+	}
+
+	function setPingdom(){
+		$.get('/beanstalk', function(data) {
+			console.log(data);
 		});
 	}
 
