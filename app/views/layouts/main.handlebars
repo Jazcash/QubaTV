@@ -10,11 +10,9 @@
     {{/if}}
 
     <!-- Polymer components -->
-	<link rel="import" href="/polymer/page-twitter.html">
-	<link rel="import" href="/polymer/page-donedone.html">
-	<link rel="import" href="/polymer/page-quba.html">
-	<link rel="import" href="/polymer/page-beanstalk.html">
-	<link rel="import" href="/polymer/page-pingdom.html">
+	{{#each polymerPages}}
+		<link rel="import" href="/polymer/{{this}}">
+	{{/each}}
 </head>
 <body>
     {{{body}}}

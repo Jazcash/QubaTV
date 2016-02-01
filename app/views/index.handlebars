@@ -1,7 +1,5 @@
 <div class="pages">
-	<page-twitter></page-twitter>
-	<page-donedone></page-donedone>
-	<page-quba></page-quba>
-	<page-beanstalk></page-beanstalk>
-	<page-pingdom></page-pingdom>
+	{{#each polymerNames}}
+		<page-{{this}}></page-{{this}}>
+	{{/each}}
 </div>

@@ -30,7 +30,9 @@ module.exports = function (app) {
 
 router.get("/", function (req, res, next) {
 	res.render("index", {
-		title: "QubaTV"
+		title: "QubaTV",
+		polymerPages: fs.readdirSync("public/polymer"),
+		polymerNames: fs.readdirSync("public/polymer").map(function(item){ return item.split("-")[1].split(".")[0]; })
 	});
 });
 
@@ -81,18 +83,15 @@ router.get("/blogpost", function (req, res, next) {
 
 router.get("/donedone", function (req, res, next) {
 	var url = "https://"+config.donedone_username+":"+config.donedone_apikey+"@quba.mydonedone.com/issuetracker/api/v2/global_custom_filters.json";
-
 	request(url, function(error, response, html){
 	    if (error){
 	        console.log(error);
 	        return;
 	    }
-
 	    var filterId = JSON.parse(response.body)[0].id;
 	    var today = moment();
 	    var tomorrow = moment(today).add(1, 'day');
 	    url = "https://"+config.donedone_username+":"+config.donedone_apikey+"@quba.mydonedone.com/issuetracker/api/v2/activity/issues_by_global_custom_filter/"+filterId+".json?from_date="+today.format("Y-M-D")+"&until_date="+tomorrow.format("Y-M-D")+"&take=500";
-
 	    request(url, function(error, response, html){
 	        if (error){
 	            console.log(error);
