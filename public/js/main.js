@@ -64,13 +64,12 @@ $(document).ready(function(){
 
 	function setBeanstalk(){
 		$.get('/beanstalk', function(data) {
-			console.log(data);
 			$("page-beanstalk").attr({
 				"revision": data.changeset.revision,
 				"message": data.changeset.message,
 				"time": moment(new Date(data.changeset.time)).format("dddd, MMMM Do, h:mm a"),
 				"project": data.repository.title,
-				"name": data.user["first_name"]
+				"name": data.changeset.author
 			});
 		});
 	}

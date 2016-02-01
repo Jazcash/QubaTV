@@ -108,7 +108,7 @@ router.get("/donedone", function (req, res, next) {
 });
 
 router.get("/beanstalk", function(req, res, next){
-	var url = "https://"+config.beanstalk_username+":"+config.beanstalk_apikey+"@apitesting.beanstalkapp.com/api";
+	var url = "https://"+config.beanstalk_username+":"+config.beanstalk_apikey+"@quba.beanstalkapp.com/api";
 	request(url + "/changesets.json?per_page=1", function(error, response, html){
 	    if (error){
 	        console.log(error);
@@ -121,18 +121,22 @@ router.get("/beanstalk", function(req, res, next){
 	            return;
 	        }
 	        repository = JSON.parse(response.body).repository;
-	        request(url + "/users/"+changeset["user_id"]+".json", function(error, response, html){
-	            if (error){
-	                console.log(error);
-	                return;
-	            }
-	            user = JSON.parse(response.body).user;
-	            res.send({
-	                changeset: changeset,
-	                repository: repository,
-	                user: user
-	            });
-	        });
+	        res.send({
+                changeset: changeset,
+                repository: repository,
+            });
+	        // request(url + "/users/"+changeset["user_id"]+".json", function(error, response, html){
+	        //     if (error){
+	        //         console.log(error);
+	        //         return;
+	        //     }
+	        //     user = JSON.parse(response.body).user;
+	        //     res.send({
+	        //         changeset: changeset,
+	        //         repository: repository,
+	        //         //user: user
+	        //     });
+	        // });
 	    });
 	});
 });
