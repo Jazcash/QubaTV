@@ -15,11 +15,19 @@ $(document).ready(function(){
 		},
 		donedone: function(){
 			$.get('/donedone', function(data) {
-				$("page-donedone").attr({
-					"title": data.latestIssue.title,
-					"project": data.latestIssue.project.name,
-					"numberofissues": data.totalIssues
-				});
+				if (data.totalIssues > 0){
+					$("page-donedone").attr({
+						"title": data.latestIssue.title,
+						"project": data.latestIssue.project.name,
+						"numberofissues": data.totalIssues
+					});
+				} else {
+					$("page-donedone").attr({
+						"title": "",
+						"project": "",
+						"numberofissues": 0
+					});
+				}
 			});
 		},
 		quba: function(){
@@ -43,40 +51,11 @@ $(document).ready(function(){
 			});
 		},
 		pingdom: function(){
-			//$.get('/pingdom', function(data) {
+			$.get('/pingdom', function(data) {
 				$("page-pingdom").attr({
-					"clients": JSON.stringify([
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": false},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-						{"client": "The Priory Group", "isUp": true},
-					])
+					"checks": JSON.stringify(data.checks.map(function(check){ return {name: check.name, isUp: check.status === "up"}}))
 				});
-			//});
+			});
 		}
 	};
 
@@ -84,18 +63,22 @@ $(document).ready(function(){
 		handlers[page]();
 	}
 
-	$("body").animate({scrollLeft: $(".pages").children().eq(0).position().left}, 800);
-	var currentPage = 0;
-	var pageLoopId = setInterval(function(){
-		var nextPage = (currentPage + 1 < $(".pages > *").length) ? currentPage + 1 : 0;
-		$("body").animate({
-			scrollLeft: $(".pages > *").eq(nextPage).position().left
-		}, 1100, function(){
-			var previousPage = $(".pages > *").eq(currentPage)[0].localName.split("-")[1];
-			handlers[previousPage]();
-			currentPage = nextPage;
-		});
-	}, 15000);
+	startCarousel();
+
+	function startCarousel(){
+		$("body").animate({scrollLeft: $(".pages").children().eq(0).position().left}, 800);
+		var currentPage = 0;
+		var pageLoopId = setInterval(function(){
+			var nextPage = (currentPage + 1 < $(".pages > *").length) ? currentPage + 1 : 0;
+			$("body").animate({
+				scrollLeft: $(".pages > *").eq(nextPage).position().left
+			}, 1100, function(){
+				var previousPage = $(".pages > *").eq(currentPage)[0].localName.split("-")[1];
+				handlers[previousPage]();
+				currentPage = nextPage;
+			});
+		}, 15000);
+	}
 
 	function htmlDecode(input){
 		var e = document.createElement('div');

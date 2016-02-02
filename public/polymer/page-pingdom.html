@@ -38,7 +38,7 @@
 			flex-flow: row wrap;
 		}
 			.card{
-				font-size: 2vh;
+				font-size: 2.5vh;
 				font-weight: 300;
 				color: #333;
 				background: #eee;
@@ -66,15 +66,15 @@
 		</div>
 		<div class="right-col">
 			<div class="pingdom">
-				<template is="dom-repeat" items="{{clients}}">
+				<template is="dom-repeat" items="{{checks}}">
 			        <template is="dom-if" if="{{item.isUp}}">
 			        	<div class="card up">
-				        	{{item.client}}
+				        	{{item.name}}
 			        	</div>
 			        </template>
 			        <template is="dom-if" if="{{!item.isUp}}">
 			        	<div class="card down">
-				        	{{item.client}}
+				        	{{item.name}}
 			        	</div>
 			        </template>
 			    </template>
@@ -86,7 +86,7 @@
 	Polymer({
 		is: "page-pingdom",
 		properties: {
-			clients: Array
+			checks: Array
 		}
 	});
 </script>
