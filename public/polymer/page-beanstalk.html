@@ -108,7 +108,6 @@
 			name: String
 		},
 		breakLines: function(){
-			console.log(JSON.stringify(this.message));
 			var message = this.message.replace(/\r\n/g, function(match){
 			    return "</br>";
 			}).replace(/\n/g, function(match){

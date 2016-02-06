@@ -6,5 +6,8 @@
 	"twitter_access_token": "",
 	"twitter_access_token_secret": "",
 	"beanstalk_username": "",
-	"beanstalk_apikey": ""
+	"beanstalk_apikey": "",
+	"pingdom_username": "",
+	"pingdom_password": "",
+	"pingdom_apikey": ""
 }

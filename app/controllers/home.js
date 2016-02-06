@@ -132,3 +132,15 @@ router.get("/beanstalk", function(req, res, next){
 	    });
 	});
 });
+
+router.get("/pingdom", function(req, res, next){
+	var options = {
+	  url: "https://"+config.pingdom_username+":"+config.pingdom_password+"@api.pingdom.com/api/2.0/checks",
+	  headers: {
+	    "App-Key": config.pingdom_apikey
+	  }
+	};
+	request(options, function(error, response, html){
+	    res.send(JSON.parse(response.body));
+	});
+});
