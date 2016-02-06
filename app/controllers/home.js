@@ -113,7 +113,12 @@ router.get("/beanstalk", function(req, res, next){
 	        console.log(error);
 	        return;
 	    }
-	    changeset = JSON.parse(response.body)[0]["revision_cache"];
+	    if (typeof JSON.parse(response.body)[0] !== "undefined"){
+	    	var changeset = JSON.parse(response.body)[0]["revision_cache"];
+	    } else{
+	    	console.log("beanstalk fetch failed");
+	   		return;
+	   	}
 	    request(url + "/repositories/"+changeset["repository_id"]+".json", function(error, response, html){
 	        if (error){
 	            console.log(error);
